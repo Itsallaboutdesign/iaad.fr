@@ -151,11 +151,13 @@
 						<ul class="collapsible popout grey-text text-darken-2 row" data-collapsible="accordion">
 							<li ng-repeat="product in products" class="col s3 hovering"  style="margin:0;padding:0 !important; ">
 								<div hover-bg-image="{{product.hovimgUrl}}" default-bg-image="{{product.imgUrl}}" class="showDivOnHover collapsible-header  brown lighten-2 white-text text-darken-2" style="background-size:contain; border-bottom:0; padding:0; background-image:url('{{product.imgUrl}}');height:25vw;">
-
-									<div class="row valign-wrapper " style="padding:1rem;">
-												<h4 class="col s12">{{product.nom}}</h4><br><br>
-												<p class="flow-text showOnHover">à partir de</p>
-												<h4 class="showOnHover">{{product.prix}}€</h4>
+									<div class="productcontent">
+										<div class="row valign-wrapper " style="padding:1rem;">
+											<h4 class="col s12">{{product.nom}}</h4><br><br>
+										</div>
+										<div class="productprice">
+											<p class="flow-text showOnHover">à partir de</p><h4 class="showOnHover">{{product.prix}}€</h4>
+										</div>
 									</div>
 								</div>
 								<div class="collapsible-body brown lighten-2 white-text text-darken-2">
