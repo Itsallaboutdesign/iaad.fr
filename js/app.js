@@ -32,9 +32,16 @@ app.directive('hoverBgImage',function(){
             elm.bind('mouseenter',function(){
                 this.style.backgroundImage = 'url('+attrs.hoverBgImage+')';
             });
+        }
+    };
+});
+
+app.directive('defaultBgImage',function(){
+    return {
+        link: function(scope, elm, attrs){
             elm.bind('mouseleave',function(){
-                this.style.backgroundImage = '';
-            })
+                this.style.backgroundImage = 'url('+attrs.defaultBgImage+')';
+            });
         }
     };
 });
@@ -120,8 +127,8 @@ app.factory('products',function(){
 	{
 		nom:'Site vitrine',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/option/FW.jpg',
-		hovimgURL:'img/option/FW-BLUR.jpg',
+		imgUrl:'img/option/FW-BLUR.jpg',
+		hovimgUrl:'img/option/FW.jpg',
 		options:[
 		{
 			nom:'Entretien',
@@ -159,8 +166,8 @@ app.factory('products',function(){
 	{
 		nom:'Affiche',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/option/AFF.jpg',
-		hovimgURL:'img/option/AFF-BLUR.jpg',
+		imgUrl:'img/option/AFF-BLUR.jpg',
+		hovimgUrl:'img/option/AFF.jpg',
 		options:[
 		{
 			nom:'Impression',
@@ -186,8 +193,8 @@ app.factory('products',function(){
 	{
 		nom:'Logo',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/option/L.jpg',
-		hovimgURL:'img/option/L-BLUR.jpg',
+		imgUrl:'img/option/L-BLUR.jpg',
+		hovimgUrl:'img/option/L.jpg',
 		options:[],
 		prix: 50,
 		id:2
@@ -195,8 +202,8 @@ app.factory('products',function(){
 	{
 		nom:'Keynote',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/option/KEY.jpg',
-		hovimgURL:'img/option/KEY-BLUR.jpg',
+		imgUrl:'img/option/KEY-BLUR.jpg',
+		hovimgUrl:'img/option/KEY.jpg',
 		options:[],
 		prix: 25,
 		id:3
@@ -213,8 +220,8 @@ app.factory('products',function(){
 	{
 		nom:'Charte Graphique',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/option/CG.jpg',
-		hovimgURL:'img/option/CG-BLUR.jpg',
+		imgUrl:'img/option/CG-BLUR.jpg',
+		hovimgUrl:'img/option/CG.jpg',
 		options:[],
 		prix: 50,
 		id:5
