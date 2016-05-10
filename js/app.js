@@ -26,6 +26,26 @@ return {
    };
  });
 
+app.directive('hoverBgImage',function(){
+    return {
+        link: function(scope, elm, attrs){
+            elm.bind('mouseenter',function(){
+                this.style.backgroundImage = 'url('+attrs.hoverBgImage+')';
+            });
+        }
+    };
+});
+
+app.directive('defaultBgImage',function(){
+    return {
+        link: function(scope, elm, attrs){
+            elm.bind('mouseleave',function(){
+                this.style.backgroundImage = 'url('+attrs.defaultBgImage+')';
+            });
+        }
+    };
+});
+
 // PARTIE MODIIFIABLE
 // La factory 'visuals' contient tous les visuels du portfolio du site. Pour ajouter un visuel, suivre la structure suivante:
 // /!\ Ne pas oublier la virgule avant les accolades
@@ -36,6 +56,8 @@ return {
 // 	url:'lien relatif vers la ressource image (/img/image.jpg) ou absolu (http://google.fr/poule.jpg)',
 // 	client:'Client'
 // }
+
+
 
 // Pour modifier un visuel, changer simplement le contenu des ''. Ne pas oublier d'échapper les ( ' ) en les précédant d'un backslash: \'
 
@@ -105,7 +127,8 @@ app.factory('products',function(){
 	{
 		nom:'Site vitrine',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/mac.jpg',
+		imgUrl:'img/option/FW-BLUR.jpg',
+		hovimgUrl:'img/option/FW.jpg',
 		options:[
 		{
 			nom:'Entretien',
@@ -143,7 +166,8 @@ app.factory('products',function(){
 	{
 		nom:'Affiche',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/mac.jpg',
+		imgUrl:'img/option/AFF-BLUR.jpg',
+		hovimgUrl:'img/option/AFF.jpg',
 		options:[
 		{
 			nom:'Impression',
@@ -169,7 +193,8 @@ app.factory('products',function(){
 	{
 		nom:'Logo',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/mac.jpg',
+		imgUrl:'img/option/L-BLUR.jpg',
+		hovimgUrl:'img/option/L.jpg',
 		options:[],
 		prix: 50,
 		id:2
@@ -177,7 +202,8 @@ app.factory('products',function(){
 	{
 		nom:'Keynote',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/mac.jpg',
+		imgUrl:'img/option/KEY-BLUR.jpg',
+		hovimgUrl:'img/option/KEY.jpg',
 		options:[],
 		prix: 25,
 		id:3
@@ -186,6 +212,7 @@ app.factory('products',function(){
 		nom:'Aftermovie',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
 		imgUrl:'img/mac.jpg',
+		hovimgUrl:'img/mac.jpg',
 		options:[],
 		prix:100,
 		id:4
@@ -193,7 +220,8 @@ app.factory('products',function(){
 	{
 		nom:'Charte Graphique',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/mac.jpg',
+		imgUrl:'img/option/CG-BLUR.jpg',
+		hovimgUrl:'img/option/CG.jpg',
 		options:[],
 		prix: 50,
 		id:5
@@ -202,9 +230,19 @@ app.factory('products',function(){
 		nom:'E-commerce',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
 		imgUrl:'img/mac.jpg',
+		hovimgUrl:'img/mac.jpg',
 		options:[],
 		prix: 500,
 		id:6
+	},
+	{
+		nom:'Spécial',
+		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
+		imgUrl:'img/mac.jpg',
+		hovimgUrl:'img/mac.jpg',
+		options:[],
+		prix: 1000,
+		id:7
 	}
 	];
 

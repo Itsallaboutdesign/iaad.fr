@@ -128,10 +128,10 @@ nav{
 }
 .hovering .showOnHover{
 	opacity:0;
-		-webkit-transition: all linear 0.25s;
-	-moz-transiiton:all linear 0.25s;
-	-o-transtion:all linear 0.25s;
-	transition:all linear 0.25s;
+		-webkit-transition: all linear 0.5s;
+	-moz-transiiton:all linear 0.5s;
+	-o-transtion:all linear 0.5s;
+	transition:all linear 0.5s;
 }
 .hovering:hover .hideOnHover{
 	visibility: hidden;
@@ -142,13 +142,29 @@ nav{
 }
 .hovering:hover .showOnHover{
 	opacity:1;
-		-webkit-transition: all linear 0.25s;
-	-moz-transiiton:all linear 0.25s;
-	-o-transtion:all linear 0.25s;
-	transition:all linear 0.25s;
+		-webkit-transition: all linear 0.5s;
+	-moz-transiiton:all linear 0.5s;
+	-o-transtion:all linear 0.5s;
+	transition:all linear 0.5s;
 }
 .collapsible li{
 	
+}
+
+.showDivOnHover:hover{
+	opacity:1;
+	-webkit-transition: all linear 0.75s;
+	-moz-transiiton:all linear 0.75s;
+	-o-transtion:all linear 0.75s;
+	transition:all linear 0.75s;
+}
+
+.showDivOnHover{
+	opacity:1;
+	-webkit-transition: all linear 0.75s;
+	-moz-transiiton:all linear 0.75s;
+	-o-transtion:all linear 0.75s;
+	transition:all linear 0.75s;
 }
 
 .btn-border{
@@ -164,4 +180,21 @@ nav{
 	-moz-transiiton:all linear 0.25s;
 	-o-transtion:all linear 0.25s;
 	transition:all linear 0.25s;
+}
+.productcontent{
+	position: relative;
+	height: 25vw;
+}
+.productprice{
+	position: absolute;
+	bottom: 0;
+	right: 5%;
+}
+
+.productprice > p {
+	margin: 0;
+}
+
+.productprice > h4 {
+	margin: 0;
 }
