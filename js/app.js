@@ -211,8 +211,8 @@ app.factory('products',function(){
 	{
 		nom:'Aftermovie',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/mac.jpg',
-		hovimgUrl:'img/mac.jpg',
+		imgUrl:'img/option/MOV-BLUR.jpg',
+		hovimgUrl:'img/option/MOV.jpg',
 		options:[],
 		prix:100,
 		id:4
