@@ -1,0 +1,30 @@
+/* Text size */
+
+.txt-xxs {
+	font-size: 0.4em;
+}
+
+.txt-xs {
+	font-size: 0.6em;
+}
+
+.txt-s {
+	font-size: 0.8em;
+}
+
+.txt-m {
+	font-size: 1em;
+}
+
+.txt-l {
+	font-size: 1.2em;
+}
+
+.txt-xl {
+	font-size: 1.5em;
+}
+
+.txt-xxl {
+	font-size: 2em;
+}
+
