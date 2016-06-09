@@ -4,7 +4,7 @@
 		<title>IAAD. It's all about design.</title>
 		<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="css/material-icons.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,600,100' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Lato:400,300,100' rel='stylesheet' type='text/css'>
 		<meta charset="utf-8">
@@ -48,11 +48,11 @@
 							<h1 class="landing-title">IAAD</h1><br>
 							<h2 class="landing-subtitle">it's<strong>all</strong>about<strong>design</strong></h2>
 							<ul class="inline">
-						      	<li><a href="#services"><button class="btn-flat white-text waves-effect waves-light">Services</button></a></li>
-						        <li><a href="#portfolio"><button class="btn-flat white-text waves-effect waves-light">Portfolio</button></a></li>
-						        <li><a href="#tarifs"><button class="btn-flat white-text waves-effect waves-light">Tarifs</button></a></li>
-						        <li><a href="#contact"><button class="btn-flat white-text waves-effect waves-light">Votre projet</button></a></li>
-						        <li><a href="#contact"><button class="btn-flat white-text waves-effect waves-light">Notre équipe</button></a></li>
+				      	<li><a href="#services"><button class="btn-flat white-text waves-effect waves-light">Services</button></a></li>
+				        <li><a href="#portfolio"><button class="btn-flat white-text waves-effect waves-light">Portfolio</button></a></li>
+				        <li><a href="#tarifs"><button class="btn-flat white-text waves-effect waves-light">Tarifs</button></a></li>
+				        <li><a href="#contact"><button class="btn-flat white-text waves-effect waves-light">Votre projet</button></a></li>
+				        <li><a href="#contact"><button class="btn-flat white-text waves-effect waves-light">Notre équipe</button></a></li>
 							</ul>
 						</div>
 					</div>
@@ -124,7 +124,7 @@
 					<div class="row"><p class="flow-text"></p></div>
 					<div class="row">
 						<div class="col s12 m6 l3 center gallery" ng-repeat="visual in visuals">
-							<img class="materialboxed" ng-src="{{visual.url}}" data-caption="{{visual.nom}}">
+							<img class="materialboxed" ng-src="{{visual.url}}" data-caption="{{visual.nom}}" ng-attr-id="{{'img'+$index}}">
 							<h5 class="white-text">{{visual.nom}}</h5>
 							<p>{{visual.client}}</p>
 						</div>
@@ -143,53 +143,175 @@
 						<p class="flow-text center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.</p>
 					</div>
 					<hr class="divider">
-					<div class="row">
-						<p class="flow-text"></p>
-					</div>
+					<v-space></v-space>
 				</div>
-					<div class="row">
-						<div  ng-repeat="product in products">
-							<div class="col s3 modal-trigger" data-target="{{'modal'+$index}}" style="margin:0;padding:0 !important; ">
-								<div hover-bg-image="{{product.hovimgUrl}}" default-bg-image="{{product.imgUrl}}" class="showDivOnHover brown lighten-2 white-text text-darken-2" style="background-size:contain; border-bottom:0; padding:0; background-image:url('{{product.imgUrl}}');height:25vw;">
-									<div class="productcontent">
-										<div class="row valign-wrapper " style="padding:1rem;">
-											<h4 class="col s12">{{product.nom}}</h4><br><br>
-										</div>
-										<div class="productprice">
-											<p class="flow-text showOnHover">à partir de</p><h4 class="showOnHover">{{product.prix}}€</h4>
-										</div>
+				<div class="row">
+					<div ng-repeat="product in products">
+						<div class="col s12 m6 l3 modal-trigger" data-target="{{'modal'+$index}}" style="margin:0;padding:0 !important; ">
+							<div hover-bg-image="{{product.hovimgUrl}}" default-bg-image="{{product.imgUrl}}" class="showDivOnHover brown lighten-2 white-text text-darken-2 showcase" style="background-image:url('{{product.imgUrl}}');">
+								<div class="productcontent">
+									<div class="row valign-wrapper " style="padding:1rem;">
+										<h4 class="col s12">{{product.nom}}</h4><br><br>
 									</div>
-								</div>
-							</div>
-							<div class="modal brown white-text" ng-attr-id="{{'modal'+$index}}">
-								<div class="modal-content">
-									<div class="row">
-										<h4>{{product.nom}}</h4>
-										<p class="flow-text">A partir de {{product.prix}}€</p>
-										<hr class="divider">
+									<div class="productprice">
+										<p class="flow-text showOnHover">à partir de</p><h4 class="showOnHover">{{product.prix}}€</h4>
 									</div>
-									<div class="row">
-										<div ng-class="{'col s6':product.options.length,'col s12':!product.options.length}">
-											<p>{{product.description}}</p>
-										</div>
-										<div class="col s6" ng-show="product.options.length">
-											<h5>Options</h5>
-											<form class="col s12">
-												<div class="input-field" ng-repeat="option in product.options">
-													<button data-tooltip="{{option.tooltip}}" data-position="right" ng-class="{'btn orange tooltipped':option.checked, 'btn brown darken-4 white-text tooltipped':!option.checked}" ng-click="checkOption($index,product.options);updatePrice(product)">{{option.nom}}</button>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button class="btn brown lighten-4 brown-text text-darken-4 waves-effect waves-light modal-action modal-close">OK</button>
 								</div>
 							</div>
 						</div>
+						<div class="modal brown white-text" ng-attr-id="{{'modal'+$index}}">
+							<div class="modal-footer hide-on-med-and-up">
+								<button class="btn brown lighten-4 brown-text text-darken-4 waves-effect waves-light modal-action modal-close">OK</button>
+							</div>
+							<div class="modal-content">
+								<div class="row">
+									<h4>{{product.nom}}</h4>
+									<p class="flow-text">A partir de {{product.prix}}€</p>
+									<hr class="divider">
+								</div>
+								<div class="row">
+									<div ng-class="{'col s12 m6':product.options.length,'col s12':!product.options.length}">
+										<p>{{product.description}}</p>
+									</div>
+									<div class="col s12 m6" ng-show="product.options.length">
+										<h5>Options</h5>
+										<form class="col s12">
+											<div class="input-field" ng-repeat="option in product.options">
+												<button data-tooltip="{{option.tooltip}}" data-position="right" ng-class="{'btn orange tooltipped':option.checked, 'btn brown darken-4 white-text tooltipped':!option.checked}" ng-click="checkOption($index,product.options);updatePrice(product)">{{option.nom}}</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer hide-on-small-only">
+								<button class="btn brown lighten-4 brown-text text-darken-4 waves-effect waves-light modal-action modal-close">OK</button>
+							</div>
+						</div>
 					</div>
-
+				</div>
+				<v-space></v-space>
+				<v-space></v-space>
+				<v-space></v-space>
+				<v-space></v-space>
 			</div>
+
+			<!--Parallax divider-->
+			<div class="row parallax-container parallax-divider projet" style="margin-top:-4%;">
+				<div class="container">
+					<div class="row white-text" style="padding-top:10%">
+						<h2 class="center">Votre projet</h2>
+						<p class="flow-text center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.</p>
+					</div>
+					<div class="row white-text projectForm z-depth-1 hoverable">
+						<h3 class="minor center">Parlez nous de vous</h3>
+						<form class="col s12 center" ng-model="devis" name="devis" novalidate class="devis" ng-submit="submitForm(devis)">
+							<div class="input-field col s6">
+								<i class="material-icons prefix">account_circle</i>
+								<input type="text" ng-model="clientName" name="clientName">
+								<label for="clientName">Nom</label>
+								<div ng-show="devis.$submitted || devis.clientName.$touched">
+									<span class="warning" ng-show="devis.clientName.$error.required">Ce champ est requis</span>
+								</div>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix">account_circle</i>
+								<input type="text" ng-model="clientSurname" name="clientSurname">
+								<label for="clientSurname">Prénom</label>
+								<div ng-show="devis.$submitted || devis.clientSurname.$touched">
+									<span class="warning" ng-show="devis.clientSurname.$error.required">Ce champ est requis</span>
+								</div>
+							</div>
+							<div class="input-field col s12">
+								<i class="material-icons prefix">mail</i>
+								<input type="email" ng-model="clientMail" name="clientMail" placeholder="@" required>
+								<label for="clientMail">E-mail</label>
+								<div ng-show="devis.$submitted || devis.clientMail.$touched">
+									<span class="warning" ng-show="devis.clientMail.$error.email">Cette adresse mail n'est pas valide</span>
+								</div>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix">store</i>
+								<input type="text" ng-model="enterpriseName" name="enterpriseName" required>
+								<label for="enterpriseName">Nom de l'entreprise</label>
+								<div ng-show="devis.$submitted || devis.enterpriseName.$touched">
+									<span class="warning" ng-show="devis.enterpriseName.$error.required">Dites nous en un peu plus...</span>
+								</div>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix">work</i>
+								<input type="text" ng-model="position" name="position">
+								<label for="position">Poste</label>
+							</div>
+							<div class="input-field col s12">
+								<select ng-model="type" required>
+									<option value="" disabled selected>Sélectionnez une option</option>
+									<option value="student">Association étudiante</option>
+									<option value="ong">Association à but non lucratif / ONG </option>
+									<option value="auto">Auto entrepreneur/ Entreprise unipersonnelle</option>
+									<option value="proxi">Commerce de proximité</option>
+									<option value="startup">Start-up / TPE</option>
+									<option value="pme">PME</option>
+									<option value="eti">Entreprise de taille intermédiaire et plus</option>
+									<option value="public">Structure publique</option>
+								</select>
+								<label>Type de structure</label>
+							</div>
+							<div class="input-field col s6" ng-if="type">
+								<i class="material-icons prefix">explore</i>
+								<input type="text" ng-model="activity" name="activity">
+								<label for="clientName">Secteur d'activité</label>
+							</div>
+							<div class="input-field col s6" ng-show="type">
+								<select ng-model="size">
+									<option value="" disabled selected>Sélectionnez une option</option>
+									<option value="10"> < 10 personnes</option>
+									<option value="50"> Entre 10 et 50 personnes</option>
+									<option value="250"> Entre 50 et 250 personnes </option>
+									<option value="1000"> Entre 250 et 1000 personnes</option>
+									<option value="5000"> > 1000 personnes </option>
+								</select>
+								<label>Taille de structure</label>
+							</div>
+							<div class="input-field col s12" ng-show="clientName && enterpriseName && type">
+								<select multiple ng-model="realisation" required>
+									<option value="" disabled selected>Que souhaitez-vous?</option>
+									<option value="vitrine">Site vitrine</option>
+									<option value="affiche">Affiche</option>
+									<option value="logo">Logo</option>
+									<option value="keynote">Keynote</option>
+									<option value="aftermovie">Aftermovie</option>
+									<option value="charte">Charte graphique</option>
+									<option value="ecommerce">E-commerce</option>
+									<option value="special">Autre/ Demande particulière</option>
+								</select>
+								<label>Type de réalisation</label>
+							</div>
+							<div class="input-field col s12" ng-show="realisation">
+								<i class="material-icons prefix">info</i>
+								<input type="text" ng-model="title" name="title" required>
+								<label for="title">Nom du projet</label>
+							</div>
+							<div class="input-field col s12" ng-show="title" required>
+								<i class="material-icons prefix">assignment</i>
+								<textarea class="materialize-textarea" name="description" ng-model="description"></textarea>
+								<label for="description">Décrivez brièvement votre projet</label>
+							</div>
+							<div class="input-field col s12" ng-show="devis.$valid">
+								<button type="submit" class="btn-large light-green darken-2 center waves-effect waves-light">Envoyer</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="parallax"><img src="img/projet.jpg"></div>
+			</div>
+
+			<!-- Notre équipe-->
+			<div class="row">
+				<div class="container">
+					<h3 class="center">Notre équipe</h3>
+				</div>
+			</div>
+
 		</main>
 
 
@@ -210,6 +332,7 @@
 		 $(document).ready(function(){
 		 	$('.modal-trigger').leanModal();
 		 	$('.parallax').parallax();
+			$('select').material_select();
 		    $('.scrollspy').scrollSpy();
 		    $(".button-collapse").sideNav();
 		    $('.materialboxed').materialbox();
@@ -224,7 +347,7 @@
 
 		function updateColor() {
 			var s= $(document).scrollTop();
-		  var o = $(document).scrollTop() / 1000;
+		  	var o = $(document).scrollTop() / 1000;
 		    if(s > 700) {o = 1; }
 		    var e = $('nav');
 		    var currentColor = e.css('background-color');
