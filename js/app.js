@@ -14,7 +14,12 @@ app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRo
 
 	$urlRouterProvider.otherwise('/');
 }]);
-
+app.directive('vSpace',function(){
+	return{
+		restrict : 'E',
+		template: '<div class="row"><p class="flow-text"></p></div>'
+	}
+})
 app.directive('ng-gallery', function() {
 return {
     // Restrict it to be an attribute in this case
@@ -112,7 +117,7 @@ app.factory('visuals',function(){
 	return v;
 });
 
-//La factory products référence les produits. Chaque produit peut posséder un certain nombre d'options, contenues dans un tableau. 
+//La factory products référence les produits. Chaque produit peut posséder un certain nombre d'options, contenues dans un tableau.
 // Pour ajouter une option, insérer la structure suivante à la suite dans le tableau options:[{},{},{}],
 
 // ,{
@@ -211,8 +216,8 @@ app.factory('products',function(){
 	{
 		nom:'Aftermovie',
 		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
-		imgUrl:'img/option/MOV-BLUR.jpg',
-		hovimgUrl:'img/option/MOV.jpg',
+		imgUrl:'img/mac.jpg',
+		hovimgUrl:'img/mac.jpg',
 		options:[],
 		prix:100,
 		id:4
@@ -258,8 +263,15 @@ app.controller('HomeCtrl',[function(){
 app.controller('SuperCtrl',['$rootScope','$scope','visuals','products',function($rootScope,$scope,visuals,products){
 	$scope.visuals = visuals;
 	$scope.products = products;
+	$scope.devis = {};
 	$scope.originalPrice = [];
 	$scope.price = 150;
+
+	//Formulaire
+	$scope.realisation = '';
+	$scope.type = '';
+	$scope.size = '';
+
 	prix = 150;
 	prixEntretien = 10;
 	prixCharte = 30;
@@ -289,30 +301,30 @@ app.controller('SuperCtrl',['$rootScope','$scope','visuals','products',function(
 
 		switch(i){
 				case 1: $scope.visuals = visuals; break;
-				
-				case 2: 		
+
+				case 2:
 				for (var i = 0; i < visuals.length; i++) {
 					if(visuals[i].type === 'Affiche') newVisuals.push(visuals[i]);
 				};
 				$scope.visuals = newVisuals;
 				break;
-				
-				case 3: 		
+
+				case 3:
 				for (var i = 0; i < visuals.length; i++) {
 					if(visuals[i].type === 'Logo') newVisuals.push(visuals[i]);
 				};
 				$scope.visuals = newVisuals;
 				break;
 
-				
-				case 4: 		
+
+				case 4:
 				for (var i = 0; i < visuals.length; i++) {
 					if(visuals[i].type === 'Vitrine') newVisuals.push(visuals[i]);
 				};
 				$scope.visuals = newVisuals;
 				break;
-				
-				case 5: 		
+
+				case 5:
 				for (var i = 0; i < visuals.length; i++) {
 					if(visuals[i].type === 'Edition') newVisuals.push(visuals[i]);
 				};
@@ -323,6 +335,27 @@ app.controller('SuperCtrl',['$rootScope','$scope','visuals','products',function(
 				break;
 
 			}
+	}
+
+	$scope.submitForm = function(){
+		form = $scope.devis;
+
+		if(form.$valid){
+			var infos = {
+				clientName : form.clientName.$modelValue,
+				clientSurname: form.clientSurname.$modelValue,
+				clientMail: form.clientMail.$modelValue,
+				enterpriseName : form.enterpriseName.$modelValue,
+				position : form.position.$modelValue,
+				type : $scope.type,
+				realisation : $scope.realisation,
+				size : $scope.size,
+				title : form.title.$modelValue,
+				description : form.description.$modelValue
+			}
+		}else Materialize.toast('Formulaire invalide, veuillez vérifier les champs',3000);
+
+
 	}
 
 }]);
