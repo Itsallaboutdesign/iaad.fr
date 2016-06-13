@@ -62,7 +62,7 @@
 
 
 			<!--Services-->
-			<div class="row brown darken-4 white-text z-depth-1 services" >
+			<div class="row brown darken-2 white-text z-depth-1 services" >
 				<div class="container">
 					<div class="row">
 						<p class="flow-text"></p>
@@ -112,21 +112,35 @@
 						<div class="center valign scrollspy" id="portfolio">
 							<h3>Découvrez nos réalisations</h3>
 							<ul class="inline">
-								<li><button ng-click="filter(1);" class="btn-flat btn-border white-text waves-effect waves-light">Tout</button></li>
-								<li><button ng-click="filter(2);" class="btn-flat btn-border white-text waves-effect waves-light">Affiches</button></li>
-								<li><button ng-click="filter(3);" class="btn-flat btn-border white-text waves-effect waves-light">Logos</button></li>
-								<li><button ng-click="filter(4);" class="btn-flat btn-border white-text waves-effect waves-light">Vitrines</button></li>
-								<li><button ng-click="filter(5);" class="btn-flat btn-border white-text waves-effect waves-light">Edition</button></li>
+								<li><button ng-click="type=''" class="btn-flat btn-border white-text waves-effect waves-light">Tout</button></li>
+								<li><button ng-click="type='Affiche'" class="btn-flat btn-border white-text waves-effect waves-light">Affiches</button></li>
+								<li><button ng-click="type='Logo'" class="btn-flat btn-border white-text waves-effect waves-light">Logos</button></li>
+								<li><button ng-click="type='Vitrine'" class="btn-flat btn-border white-text waves-effect waves-light">Vitrines</button></li>
+								<li><button ng-click="type='Edition'" class="btn-flat btn-border white-text waves-effect waves-light">Edition</button></li>
 							</ul>
 						</div>
 					</div>
 					<hr class="divider">
 					<div class="row"><p class="flow-text"></p></div>
 					<div class="row">
-						<div class="col s12 m6 l3 center gallery" ng-repeat="visual in visuals">
-							<img class="materialboxed" ng-src="{{visual.url}}" data-caption="{{visual.nom}}" ng-attr-id="{{'img'+$index}}">
+						<div class="col s12 m6 l3 center gallery" ng-repeat="visual in visuals | filter: {'type': type}">
+							<img class="modal-trigger materialboxed" ng-click="updateVisual(visual);" data-target="imgModal" ng-src="{{visual.url}}" data-caption="{{visual.nom}}" ng-attr-id="{{'img'+$index}}">
 							<h5 class="white-text">{{visual.nom}}</h5>
 							<p>{{visual.client}}</p>
+						</div>
+						<div class="modal" id="imgModal" style="padding:0;
+						heigth:90vh;
+						background-image:url({{thisVisual.url}});
+						background-size:contain;
+						background-repeat:no-repeat;
+						background-position:center;
+						background-color:rgba(0,0,0,0);">
+							<div class="modal-footer" style="background-color:rgba(0,0,0,0) !important;">
+								<button class="btn-large amber darken-2 center modal-action modal-close"><i class="material-icons">close</i></button>
+							</div>
+							<div class="modal-content center">
+							<div style="height:60vh;width:100%"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -136,7 +150,7 @@
 
 
 			<!--Tarifs-->
-			<div class="row brown darken-4 white-text tarifs">
+			<div class="row brown darken-1 white-text tarifs">
 				<div class="container">
 					<div class="row ">
 						<h3 class="center scrollspy" id="tarifs"> Tarifs </h3>
@@ -299,6 +313,19 @@
 							<div class="input-field col s12" ng-show="devis.$valid">
 								<button type="submit" class="btn-large light-green darken-2 center waves-effect waves-light">Envoyer</button>
 							</div>
+							<v-space></v-space>
+							<div class="preloader-wrapper active" ng-show="loading">
+								<div class="spinner-layer spinner-green-only">
+									<div class="circle-clipper left">
+										<div class="circle"></div>
+									</div><div class="gap-patch">
+										<div class="circle"></div>
+									</div><div class="circle-clipper right">
+										<div class="circle"></div>
+									</div>
+								</div>
+							</div>
+
 						</form>
 					</div>
 				</div>
@@ -318,6 +345,19 @@
 
 		<footer>
 		</footer>
+
+	<!--Modals-->
+	<div class="modal" id="mailModal">
+		<div class="modal-content">
+			<h3 class="warning"><i class="medium material-icons">error</i>Erreur d'envoi</h3>
+			<hr class="divider">
+			<p class="flow-text grey-text text-darken-2">Vous allez recevoir un mail de confirmation, cependant votre demande ne nous est pas parvenue suite à une erreur.
+			Merci de nous contacter par mail à l'adresse suivante: contact[@]iaad[.]fr</p>
+		</div>
+		<div class="modal-footer">
+			<a class="btn-large amber darken-2 modal-action modal-close waves-effect waves-light" href="mailto:contact@iaad.fr?subject=Mon projet communication">Contacter</a>
+		</div>
+	</div>
 
 
 	<!--Scripts-->
