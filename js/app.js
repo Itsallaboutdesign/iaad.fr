@@ -242,7 +242,7 @@ app.factory('products',function(){
 	},
 	{
 		nom:'Spécial',
-		description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at congue enim, sed finibus odio. Nam id luctus purus. Vivamus interdum commodo rutrum. Integer fringilla, elit quis consectetur rhoncus, dui diam semper tortor, non luctus odio felis eu nulla. Etiam pretium efficitur ante, quis placerat leo sagittis eget.',
+		description:'Vous avez un projet graphique ou technologique particulier, et souhaitez avoir une aide, des conseils, ou une réalisation personnalisée? Nous vous aidons à mettre vos idées à plat, nous étudions la faisabilité de votre projet, et le réalisons en mode agile de A à Z.',
 		imgUrl:'img/mac.jpg',
 		hovimgUrl:'img/mac.jpg',
 		options:[],
@@ -260,12 +260,14 @@ app.controller('HomeCtrl',[function(){
 
 }]);
 
-app.controller('SuperCtrl',['$rootScope','$scope','visuals','products',function($rootScope,$scope,visuals,products){
+app.controller('SuperCtrl',['$rootScope','$scope','visuals','products','$http','$q',function($rootScope,$scope,visuals,products,$http,$q){
 	$scope.visuals = visuals;
 	$scope.products = products;
 	$scope.devis = {};
 	$scope.originalPrice = [];
 	$scope.price = 150;
+	$scope.loading = false;
+	$scope.thisVisual = {};
 
 	//Formulaire
 	$scope.realisation = '';
@@ -296,51 +298,21 @@ app.controller('SuperCtrl',['$rootScope','$scope','visuals','products',function(
 	}
 
 	//Filtre portfolio
-	$scope.filter = function(i){
+	$scope.filter = function(){
 		var newVisuals = [];
+	}
 
-		switch(i){
-				case 1: $scope.visuals = visuals; break;
-
-				case 2:
-				for (var i = 0; i < visuals.length; i++) {
-					if(visuals[i].type === 'Affiche') newVisuals.push(visuals[i]);
-				};
-				$scope.visuals = newVisuals;
-				break;
-
-				case 3:
-				for (var i = 0; i < visuals.length; i++) {
-					if(visuals[i].type === 'Logo') newVisuals.push(visuals[i]);
-				};
-				$scope.visuals = newVisuals;
-				break;
-
-
-				case 4:
-				for (var i = 0; i < visuals.length; i++) {
-					if(visuals[i].type === 'Vitrine') newVisuals.push(visuals[i]);
-				};
-				$scope.visuals = newVisuals;
-				break;
-
-				case 5:
-				for (var i = 0; i < visuals.length; i++) {
-					if(visuals[i].type === 'Edition') newVisuals.push(visuals[i]);
-				};
-				$scope.visuals = newVisuals;
-				break;
-
-				default:
-				break;
-
-			}
+	$scope.updateVisual=function(visual){
+		$scope.thisVisual = visual;
 	}
 
 	$scope.submitForm = function(){
+		console.log('Submitting form...')
 		form = $scope.devis;
+		$scope.loading = true;
 
 		if(form.$valid){
+			console.log('Form is alright, fetching infos...');
 			var infos = {
 				clientName : form.clientName.$modelValue,
 				clientSurname: form.clientSurname.$modelValue,
@@ -349,10 +321,30 @@ app.controller('SuperCtrl',['$rootScope','$scope','visuals','products',function(
 				position : form.position.$modelValue,
 				type : $scope.type,
 				realisation : $scope.realisation,
+				activity: form.activity.$modelValue,
 				size : $scope.size,
 				title : form.title.$modelValue,
 				description : form.description.$modelValue
 			}
+			console.log('Got infos. Connecting to mailing page...');
+			console.log(infos);
+
+			$http.post('contact.php',infos).success(function(data){
+				console.log('Connection succeed');
+				console.log('PHP returned:');
+				console.log(data);
+				if(data.success && data.us){
+					$scope.loading = false;
+					Materialize.toast('Votre demande a bien été prise en compte',3000);
+				}else if(data.success){
+					$scope.loading = false;
+					$('#mailModal').openModal();
+				}else Materialize.toast('Une erreur est survenue, veuillez réessayer',3000);
+			}).error(function(){
+				console.log('Connection failed');
+				$scope.loading = false;
+				Materialize.toast('Erreur inconnue.',3000);
+			})
 		}else Materialize.toast('Formulaire invalide, veuillez vérifier les champs',3000);
 
 
